@@ -15,7 +15,7 @@
     </section>
     <section class="content">
         <div class="container-fluid">
-            <form action="" method="post" id="userForm" name="userForm">
+            <form action="#" method="post" id="userForm" name="userForm">
                 @csrf
                 <div class="card">
                     <div class="card-body">
@@ -51,7 +51,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="slug">Password<span style="color:#FF0000">*</span></label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                    <input type="text" name="password" id="password" class="form-control" placeholder="Password" value="">
                                     <p></p>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="pb-5 pt-3">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" onclick="generatePassword()">Create</button>
                     <a href="{{ route('users.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
                 </div>
             </form>
@@ -123,5 +123,22 @@
                 }
             })
         });
+
+        function generatePassword() {
+            var password = generateRandomPassword();
+            document.getElementById('password').value = password;
+        }
+
+        function generateRandomPassword() {
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var length = 8;
+            var password = '';
+
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters.charAt(randomIndex);
+            }
+            return password;
+        }
     </script>
 @endsection
