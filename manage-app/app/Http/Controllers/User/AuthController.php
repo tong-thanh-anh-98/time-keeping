@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ConstCommon;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -19,13 +20,11 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        die();
         $intendedUrl = session('url.intended');
         $credentials = [
             'name' => $request->input('name'),
             'password' => $request->input('password'),
         ];
-        
         $redirectTo = route('home');
         $message = "Đăng nhập thành công";
         if (!Auth::attempt($credentials)) {

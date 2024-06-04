@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +41,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
     });
+});
+Route::group(['prefix' => '/'], function () {
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'index')->name('home');
+    });
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login');
+        Route::post('/login', 'login')->name('loginPost');
+        Route::get('/logout', 'logout')->name('logout');
+    });
+    Route::controller(AttendanceController::class)->group(function () {
+        Route::get('/attendance', 'index')->name('showTimeCard');
+        Route::post('/attendance', 'add')->name('addTimeCard');
+    });
+
 });
