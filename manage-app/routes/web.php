@@ -36,6 +36,10 @@ Route::group(['prefix' => 'admin'], function () {
 
         // users routes
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
-
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/edit/{userId}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{userId}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{userId}', [UserController::class, 'destroy'])->name('users.delete');
     });
 });

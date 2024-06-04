@@ -18,7 +18,6 @@
             @include('admin.message')
 
             <div class="card">
-                <!-- form search section -->
                 <form action="" method="get">
                     <div class="card-header">
                         <div class="card-title">
@@ -44,7 +43,8 @@
                                 <th width="60">ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th width="100">PassWord</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                                 <th width="100">Action</th>
                             </tr>
                         </thead>
@@ -55,7 +55,8 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->password }}</td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->address }}</td>
                                         <td>
                                             <a href="{{ route('users.edit', $user->id) }}">
                                                 <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -88,11 +89,11 @@
 @endsection
 
 @section('customJs')
-    {{-- <script>
-        function deleteCategory(id) {
+    <script>
+        function deleteUser(id) {
             var url = '{{ route('users.delete', 'ID') }}';
             var newUrl = url.replace('ID', id)
-            if (confirm('Are you sure want to delete category?')) {
+            if (confirm('Are you sure want to delete user?')) {
                 $.ajax({
                     url: newUrl,
                     type: "delete",
@@ -109,5 +110,5 @@
                 });
             }
         }
-    </script> --}}
+    </script>
 @endsection

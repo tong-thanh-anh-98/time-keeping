@@ -45,9 +45,3 @@
         </div>					
     </section>
 @endsection
-
-{{-- @section('customJs')
-    <script>
-        alert("Welcome to Administrative Panel!");
-    </script>
-@endsection --}}

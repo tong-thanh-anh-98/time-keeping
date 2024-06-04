@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administrative Panel</title>
@@ -57,19 +58,12 @@
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
 
     <script type="text/javascript">
-        $.ajaxSetup({
+          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         Dropzone.autoDiscover = false;
-
-        // Summernote section
-        $(document).ready(function () {
-            $('.summernote').summernote({
-                height: '250px'
-            });
-        });
     </script>
 
     @yield('customJs')
