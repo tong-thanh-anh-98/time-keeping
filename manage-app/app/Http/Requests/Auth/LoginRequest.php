@@ -33,10 +33,10 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng nhập',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu phải có độ dài tối thiểu là 8 ký tự',
-            'password.regex' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt'
+            'name.required' => 'Name is required',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must have a minimum length of 8 characters',
+            'password.regex' => 'Password must contain at least one special character'
         ];
     }
 }

@@ -49,7 +49,11 @@ Route::group(['prefix' => '/'], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/login', 'showLoginForm')->name('login');
         Route::post('/login', 'login')->name('loginPost');
+
         Route::get('/logout', 'logout')->name('logout');
+
+        Route::get('/changePass', 'showFormChangePass')->name('showPass');
+        Route::post('/changePass', 'changePass')->name('changePass');
     });
     Route::controller(AttendanceController::class)->group(function () {
         Route::get('/attendance', 'index')->name('showTimeCard');

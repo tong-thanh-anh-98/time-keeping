@@ -68,17 +68,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Date</label>
-                        <input type="date" class="form-control" id="recipient-name">
+                        <input type="date" name="date" class="form-control" id="recipient-name">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">note:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea name="note" class="form-control" id="message-text"></textarea>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
+                    <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger">Send</button>
+                <button type="submit" class="btn btn-danger">Send</button>
+            </div>
+                </form>
             </div>
         </div>
             </div>

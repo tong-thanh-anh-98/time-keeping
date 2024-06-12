@@ -18,7 +18,7 @@ class AttendanceController extends Controller
     public function add(Request $request)
     {
         if (!Auth::check()) {
-            return redirect()->route('home')->with('error','Bạn chưa đăng nhập');
+            return redirect()->route('home')->with('error','You are not logged in, please log in');
         }
         $user = Auth::user();
         $type = $request->input('type');
@@ -34,7 +34,7 @@ class AttendanceController extends Controller
 
             Attendance::create($attendance);
 
-            return redirect()->route('home')->with('success', 'Yêu cầu của bạn đã được gửi và đang chờ phê duyệt');
+            return redirect()->route('home')->with('success', 'Your request has been sent and is awaiting approval');
         }
         $attendance = [
             'user_id' => $user->id,

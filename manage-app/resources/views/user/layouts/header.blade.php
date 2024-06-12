@@ -13,14 +13,28 @@
                     </li>
                 </ul>
                 @auth
-                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <a class="btn btn-danger me-2" href="{{ route('logout') }}" type="submit">Logout</a>
-                    </form>
+                    <div class="dropdown" style="margin-right: 7px">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="{{route('showPass')}}">Change Password</a>
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 @endauth
                 @guest
                     <a class="btn btn-primary me-2" href="{{ route('login') }}">Login</a>
                 @endguest
+
                 <a class="btn btn-danger" href="{{ route('showTimeCard') }}" type="submit">TimeCard</a>
             </div>
         </div>

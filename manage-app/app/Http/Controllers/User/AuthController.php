@@ -4,15 +4,19 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\Auth\ChangePassRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ConstCommon;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     //
-    public function showLoginForm(){
-        if(Auth::check()){
+    public function showLoginForm()
+    {
+        if (Auth::check()) {
             return redirect()->route('home')->with('Bạn đã đăng nhập rồi');
         }
         return view('user.login');
@@ -39,12 +43,38 @@ class AuthController extends Controller
         return redirect()->to($redirectTo)->with('message', $message);
     }
 
-    public function logOut(){
+    public function logOut()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
 
 
+    public function showFormChangePass(Request $request, $id_user = null)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('home');
+        }
+        return view('user.changepass')->with(
+            ['id_user' => $id_user]
+        );
+    }
+
+    public function changePass(ChangePassRequest $request)
+    {
+        $user = Auth::user();
+
+        if (Hash::check($request->password, $user->password)) {
+
+            $user->password = Hash::make($request->passwordNew);
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password is change success.');
+        } else {
+            return redirect()->back()->with('error', 'Password is error.');
+        }
+
+    }
 
 }
 
